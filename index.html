@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body>
-    <div id = "node1" class="node" onmousedown="makeObjectToDrag(this);" ></div>
+    <div id = "1node" class="node" onmousedown="makeObjectToDrag(this);" To = '2node' ></div>
+    <div id = "2node" class="node" onmousedown="makeObjectToDrag(this); " To = '1node' ></div>
     
-    <svg  id ="line-container" width="1000000" height="1000000"><line id="line1" x1="0" y1="0" x2="0" y2="0" stroke="black"/></svg>
-
+    <svg  id ="line-container" width="100vw" height="100vw"><line id="1,2" x1="0" y1="0" x2="0" y2="0" stroke="black"/></svg>
+    <svg  id ="line-container" width="100vw" height="100vw"><line id="2,1" x1="0" y1="0" x2="0" y2="0" stroke="black"/></svg>
+    <script src="Jquery.js" type="text/javascript"></script>
     <script src="Movement.js" type="text/javascript"></script>
 </body>
 </html>

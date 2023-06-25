@@ -1,3 +1,14 @@
+function getNumbersFromString(string) {
+    // Create a regular expression that matches any digit.
+    const regex = /\d+/g;
+  
+    // Match all the numbers in the string and return them as an array.
+    var arr =  string.match(regex);
+    var number = arr.reduce(function (accum, digit) {
+        return (accum * 10) + digit
+    }, 0);
+    return number;
+  }
 
 var cursor = {
     x: 0,
@@ -6,7 +17,6 @@ var cursor = {
 var dragobj = null,
     h1, i1, oLeft, oTop;
 
-var myBasicLine = document.getElementById("line1")
 document.onmousedown = startMove;
 document.onmouseup = drop;
 document.onmousemove = moving;
@@ -50,7 +60,6 @@ function startMove(e) {
         dragobj.className = "moving node";
         i1 = cursor.x - dragobj.offsetLeft;
         h1 = cursor.y - dragobj.offsetTop;
-        console.log(i1,h1);
 
     }
 }
@@ -70,10 +79,50 @@ function moving(e) {
         dragobj.style.top = oTop + 'px';
         w =  dragobj.offsetWidth;
         h =  dragobj.offsetHeight;
-        console.log(w,h);
-    // node width is 100 -> w/2 = 50 
-        myBasicLine.setAttribute("x2",oLeft + w/2)
-        myBasicLine.setAttribute("y2",oTop + h/2)
+        var MyX = w/2 + oLeft;
+        var MyY = h/2 + oTop;
+        // node width is 100 -> w/2 = 50 
+        // myBasicLine.setAttribute("x2",oLeft + w/2)
+        // myBasicLine.setAttribute("y2",oTop + h/2)
+        //undirected
+        // var LineTo = document.getElementById("12");
+        // var LineFrom = document.getElementById("21");
+        
+        // var x2 = w/2 + ToNode.offsetLeft;
+        // var y2 = h/2 + ToNode.offsetTop ;
+        // LineTo.setAttribute("x1",oLeft + w/2)
+        // LineTo.setAttribute("y1",oTop + h/2)
+        
+        // LineTo.setAttribute("x2",x2)
+        // LineTo.setAttribute("y2",y2)
+        var arrayToNodes = dragobj.getAttribute("To");
+        arrayToNodes = arrayToNodes.split(",")
+        var arrayToNodesObjs = [];        
+        for(let i = 0; i < arrayToNodes.length; i++){
+            console.log(arrayToNodes[i])
+            console.log(typeof arrayToNodes[i] === 'string' || arrayToNodes[i] instanceof String)
+            var newEL = document.getElementById(arrayToNodes[i]);
+            arrayToNodesObjs.push(newEL)
+        }
+        console.log(arrayToNodesObjs)
+        for(let i = 0; i < arrayToNodesObjs.length; i++){
+        //get myNode number
+        var myNodeNumber =  getNumbersFromString( dragobj.getAttribute("id"));
+        var ToNodeNumber = getNumbersFromString( arrayToNodesObjs[i].getAttribute("id"));
+        //get Lines that match this number m,n
+
+        //todo
+        //get arr[i] x and y
+
+
+        //todo
+
+        // var LineTo = document.getElementById("1,2");
+        // var LineFrom = document.getElementById("2,1");
+
+        }
+        
+        
 
     }
 }
