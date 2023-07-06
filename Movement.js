@@ -33,6 +33,7 @@ function makeObjectToDrag(obj) {
     if (obj) {
         dragobj = getOBJ(obj.id);
         console.log("Trigirred" , dragobj.className);
+	    console.log("zz")
     }
 
 }
